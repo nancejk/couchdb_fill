@@ -1,0 +1,12 @@
+A tool to fill a couchdb database with random data for testing purposes.
+Hopefully it is simple - the idea is that you create a class in the doc_wrapper.py file that subclasses couchdbkit.python
+ with the fields you wish the document to have.  If you want useful data, adding default (randomized) values to these fields 
+ is the way I've done it so far.  Then you just need to add that document to the types that the CouchClient class knows about in 
+ couch_writer.py, and that's it.  Manual intervention required, but hey, it's a script.
+
+ Options:
+ -n number of documents to push at once (default: 100)
+ -N total number of documents to push (default: 10000)
+ -d name of the database to push to (default: couchfill_test)
+ -s IP/hostname of the server where couch resides (necessary, no default)
+ -t Document 'type' you wish to push (defined in couch_writer.py, necessary, no default)
