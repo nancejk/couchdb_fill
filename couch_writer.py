@@ -5,8 +5,8 @@ class CouchClient(object):
 	def __init__(self,config):
 		try:
 			# First figure out which document template we are using here.
-			if config.get_param('template') not in ['eca']:
-				raise Exception('Template parameter not recognized.  Try: eca')
+			if config.get_param('template') not in ['eca','random']:
+				raise Exception('Template parameter not recognized.  Try: eca random')
 			
 			self.server = Server(uri='http://' + \
 						config.get_param('server') + \
@@ -16,6 +16,8 @@ class CouchClient(object):
 			self. docu_class = None
 			if config.get_param('template') == 'eca':
 				self.docu_class = ECADocument	
+			elif config.get_param('template') == 'random':
+				self.docu_class = DemoDocument
 			self.docu_class.set_db(self.db)
 		
 			# OK, if that all worked, consider the object initialized wrt couch,

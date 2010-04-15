@@ -62,8 +62,8 @@ def main(argv=None):
 
 		# Validate the config and move on.
 		local_config.validate()
-		print(local_config)
 		
+		# Instantiate the client and run it.
 		client = CouchClient(local_config)
 		client.go()
 	
