@@ -30,6 +30,8 @@ class Config(object):
 			self.state['db'] = 'couchfill_test'
 		if 'port' not in self.state:
 			self.state['port'] = '5984'
+		if 'verbose' not in self.state:
+			self.state['verbose'] = False
 	def get_param(self,par):
 		return self.state[par]
 	def __str__(self):
@@ -43,7 +45,7 @@ def main(argv=None):
 		# Instantiate a new config object and try to fill it with getopt.
 		local_config = Config()
 		try:
-			opts,args = getopt.getopt(sys.argv[1:], "s:n:N:d:t:")
+			opts,args = getopt.getopt(sys.argv[1:], "s:n:N:d:t:v")
 		except getopt.error, msg:
 			raise Usage(msg)
 		for opt, arg in opts:
@@ -59,6 +61,8 @@ def main(argv=None):
 				local_config.set_params(db=arg)
 			if opt == "-p":
 				local_config.set_params(port=arg)
+			if opt == "-v":
+				local_config.set_params(verbose=True)
 
 		# Validate the config and move on.
 		local_config.validate()
